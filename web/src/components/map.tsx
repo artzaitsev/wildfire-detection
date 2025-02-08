@@ -269,7 +269,7 @@ const GoogleMap = () => {
   }, []);
 
   // const [fireRisk, setFireRisk] = useState(0)
-  const [fireRisk] = useState(2)
+  const [fireRisk] = useState(0)
 
   return (
     <div>
