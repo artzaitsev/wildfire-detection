@@ -1,19 +1,5 @@
 # 🔥 Мониторинг экосистем через IT-решения 🌳
-##  
-
-## Содержание 📚
-
-1. [Background on Wildfires 🌍](#background-on-wildfires-)
-2. [Project Overview 🚀](#project-overview-)
-3. [Features 🌟](#features-)
-4. [Screenshot 📸](#screenshot-)
-5. [Installation 🛠️](#installation-%EF%B8%8F)
-6. [Usage 💻](#usage-)
-7. [File Structure 📁](#file-structure-)
-8. [Requirements 📦](#requirements-)
-9. [Improvements ✨](#improvements-)
-10. [Contributing 🤝](#contributing-)
-11. [License 📜](#license-)
+##
 
 ## Лесные пожары: угроза экологии и экономике 🌍
 Лесные пожары – одна из самых серьезных природных угроз. Они наносят колоссальный ущерб экологии, экономике и жизни людей. 
