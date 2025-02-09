@@ -1,5 +1,3 @@
-from typing import Any
-
 from config import Config
 import openmeteo_requests
 import requests_cache
