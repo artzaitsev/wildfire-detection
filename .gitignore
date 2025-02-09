@@ -5,3 +5,4 @@ venv/
 temp/
 catboost_info
 .ipynb_checkpoints
+.cache.sqlite
