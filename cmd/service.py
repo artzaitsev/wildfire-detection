@@ -7,7 +7,7 @@ app = FastAPI()
 app.mount("/assets", StaticFiles(directory="web/dist/assets"), name="assets")
 app.mount("/static", StaticFiles(directory="web/dist/static"), name="static")
 
-@app.get("/api")
+@app.get("/api/v1/predict")
 async def api_root():
     return {"message": "API работает"}
 

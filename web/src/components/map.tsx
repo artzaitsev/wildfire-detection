@@ -5,7 +5,7 @@ import {Card, CardBody } from "@heroui/card";
 import clsx from "clsx";
 import LatLngBounds = google.maps.LatLngBounds;
 
-const API_KEY = "AIzaSyC5m7jGq5n-FCu0ZPAhg_XVZ_JBpevOFUU"; // 🔥 Замените на свой API-ключ
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
 declare global {
   interface Window {
