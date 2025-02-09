@@ -1,6 +1,5 @@
 from internal.services.weather.fwi_indices import ffmc, dmc, dc, isi, bui, fwi
 
-
 class FireWeatherIndex:
     def __init__(
         self,
@@ -10,11 +9,11 @@ class FireWeatherIndex:
         prec: float,
         lat: float,
         mon: int,
-        ffmc_yda: float,
-        dmc_yda: float,
-        dc_yda: float,
+        ffmc_yda: float = 85.0,
+        dmc_yda: float = 6.0,
+        dc_yda: float = 15.0,
         lat_adjust: bool = True,
-    ) -> None:
+    ):
         """
         Класс-обёртка для вычисления индексов лесных пожаров на основе погодных данных.
 
@@ -24,9 +23,9 @@ class FireWeatherIndex:
         :param prec: Осадки (мм)
         :param lat: Широта местности (°)
         :param mon: Номер месяца (1-12)
-        :param ffmc_yda: Значение FFMC с предыдущего дня (0-101)
-        :param dmc_yda: Значение DMC с предыдущего дня (≥ 0)
-        :param dc_yda: Значение DC с предыдущего дня (≥ 0)
+        :param ffmc_yda: Значение FFMC с предыдущего дня (0-101) (по умолчанию 85.0)
+        :param dmc_yda: Значение DMC с предыдущего дня (≥ 0) (по умолчанию 6.0)
+        :param dc_yda: Значение DC с предыдущего дня (≥ 0) (по умолчанию 15.0)
         :param lat_adjust: Нужно ли учитывать широту при расчётах (по умолчанию `True`)
         """
         self.temp: float = temp
