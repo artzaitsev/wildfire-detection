@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-
 from internal.services.weather.dto import GetCurrentByLocationOut
 
 

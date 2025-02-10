@@ -1,14 +1,6 @@
-import asyncio
 import sys
 import os
-
-from starlette.requests import Request
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-import websockets
-from starlette.websockets import WebSocketDisconnect, WebSocket
-
 import httpx
 from contextlib import asynccontextmanager
 from internal.unitls.executor import executor
@@ -31,6 +23,7 @@ async def lifespan(a: FastAPI):
     executor.shutdown(wait=True)
     print("ThreadPoolExecutor shut down successfully.")
 
+# Создаем экземпляр FastAPI с указанием контекста для завершения работы
 app = FastAPI(lifespan=lifespan)
 
 # Подключаем React-статические файлы
@@ -48,6 +41,12 @@ async def get_weather_current(
     lat: float = Query(55.7386, title="Широта", description="Latitude"),
     lon: float = Query(37.6068, title="Долгота", description="Longitude")
 ):
+    """
+    Роут получения текущей погоды по географическим координатам
+    :param lat: широта
+    :param lon: долгота
+    """
+
     weather = container.weather_service.get_current(
         params=GetCurrentByLocationIn(
             lat=lat,
@@ -61,14 +60,17 @@ async def wild_fire_predict(
     lat: float = Query(55.7386, title="Широта", description="Latitude"),
     lon: float = Query(37.6068, title="Долгота", description="Longitude")
 ):
+    """
+    Роут предсказания риска пожара на основе текущей погоды
+    :param lat: широта
+    :param lon: долгота
+    """
     weather = container.weather_service.get_current(
         params=GetCurrentByLocationIn(
             lat=lat,
             lon=lon
         )
     )
-
-    print(weather.weather.temperature)
 
     prediction = await container.prediction_service.get_fire_risk_prediction(
         weather_data=weather
@@ -78,9 +80,17 @@ async def wild_fire_predict(
 
 @app.get("/{full_path:path}")
 async def serve_spa(full_path: str):
+    """
+    Роут для обслуживания SPA-приложения, все запросы отдают фронтенд
+
+    :param full_path: любой путь отдает фронтенд
+    """
+
+    # Возвращаем главный HTML файл для продакшн-режима
     if not IS_DEV:
         return FileResponse("web/dist/index.html")
 
+    # Проксируем запросы на фронт в режиме разработки
     async with httpx.AsyncClient() as client:
         frontend_url = f"{DEV_FRONTEND_URL}/{full_path}"
         try:
