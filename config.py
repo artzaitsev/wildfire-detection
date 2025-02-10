@@ -1,17 +1,15 @@
 from dotenv import load_dotenv
-import os
 
 class Config:
+    """
+    Cинглтон конфигурации приложени.
+    Подгружает environment variables, включая .env.
+    Вызывается через статичный метод get_instance,
+    """
     __instance = None
 
     def __init_internal(self):
         load_dotenv()
-
-        self.__open_meteo_api_key: str = os.getenv('OPEN_METEO_API_KEY')
-
-    @property
-    def open_meteo_api_key(self):
-        return self.__open_meteo_api_key
 
 
     @classmethod
