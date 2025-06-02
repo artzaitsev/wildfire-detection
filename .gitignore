@@ -6,3 +6,5 @@ temp/
 catboost_info
 .ipynb_checkpoints
 .cache.sqlite
+.DS_Store
+__pycache__
